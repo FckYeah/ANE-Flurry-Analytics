@@ -68,7 +68,8 @@ Also see https://wiki.apache.org/ant/TheElementsOfAntStyle
 	<!-- Check if ${debug} is true and if it is, set the properties below for a debug build -->
 	<target name="-check-debug" if="${build.debug}">
 	    <property name="iOS.library.build.type" value="Debug"/>
-	</target> 
+   	    <property name="javac.debug" value="true"/>
+   	</target> 
 
 	<!-- Check if ${debug} is false and if it is, set the properties below for a release build -->
 	<target name="-check-release" unless="${build.debug}">
