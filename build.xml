@@ -152,8 +152,7 @@ Also see https://wiki.apache.org/ant/TheElementsOfAntStyle
 	            </external-library-path>
 
 				<load-config>compc.xml</load-config>
-				<swf-version>25</swf-version>
-				<target-player>14.0.0</target-player>
+				<target-player>12.0.0</target-player>
 				<debug>${build.debug}</debug>
 			</compc>
 	    </sequential>
