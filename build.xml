@@ -37,9 +37,9 @@ Also see https://wiki.apache.org/ant/TheElementsOfAntStyle
 		<property name="name" value="Flurry"/>
 
 		<property name="build.dir" location="${basedir}/build"/>
-		<property name="build.android.dir" location="${basedir}/build/android"/>
-		<property name="build.default.dir" location="${basedir}/build/default"/>
-		<property name="build.ios.dir" location="${basedir}/build/ios"/>
+		<property name="build.android.dir" location="${build.dir}/android"/>
+		<property name="build.default.dir" location="${build.dir}/default"/>
+		<property name="build.ios.dir" location="${build.dir}/ios"/>
 		
 		<property name="swc.basedir" location="${basedir}/swc"/>
 
@@ -140,7 +140,7 @@ Also see https://wiki.apache.org/ant/TheElementsOfAntStyle
 	<macrodef name="build-swc">
 	    <attribute name="type"/>
 	    <sequential>
-			<compc output="${build.dir}/@{type}.swc">
+			<compc output="${build.dir}/@{type}/${name}.swc">
     	        <source-path path-element="@{type}/src"/>
 			    <include-sources dir="@{type}/src" includes="**/*.as"/>
 
@@ -159,7 +159,7 @@ Also see https://wiki.apache.org/ant/TheElementsOfAntStyle
 		<attribute name="name"/>
 		<attribute name="arch"/>
 		<sequential>
-			<unzip src="${build.dir}/@{name}.swc" dest="${build.dir}/@{arch}/" overwrite="true">
+			<unzip src="${build.dir}/@{name}/${name}.swc" dest="${build.dir}/@{arch}/" overwrite="true">
 			    <patternset>
 			        <include name="library.swf"/>
 			    </patternset>
@@ -182,32 +182,32 @@ Also see https://wiki.apache.org/ant/TheElementsOfAntStyle
 			<arg value="extension.xml"/>
 
 			<arg value="-swc"/>
-			<arg value="bin/${name}.swc"/>
+			<arg value="${build.dir}/actionscript/Flurry.swc"/>
 			
 			<arg value="-platform"/>
 			<arg value="iPhone-ARM"/>
 			<arg value="-platformoptions"/>
 			<arg value="platform.xml"/>
 			<arg value="-C"/>
-			<arg value="build/ios/"/>
+			<arg value="${build.ios.dir}/"/>
 			<arg value="."/>
 			
 			<arg value="-platform"/>
 			<arg value="Android-ARM"/>
 			<arg value="-C"/>
-			<arg value="build/android/"/>
+			<arg value="${build.android.dir}/"/>
 			<arg value="."/>
 			
 			<arg value="-platform"/>
 			<arg value="Android-x86"/>
 			<arg value="-C"/>
-			<arg value="build/android/"/>
+			<arg value="${build.android.dir}/"/>
 			<arg value="."/>
 			
 			<arg value="-platform"/>
 			<arg value="default"/>
 			<arg value="-C"/>
-			<arg value="build/default/"/>
+			<arg value="${build.default.dir}/"/>
 			<arg value="."/>
 		</java>
 	</target>
