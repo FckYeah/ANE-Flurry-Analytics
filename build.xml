@@ -151,8 +151,7 @@ Also see https://wiki.apache.org/ant/TheElementsOfAntStyle
                 	<include name="airglobal.swc" />
 	            </external-library-path>
 
-				<load-config>compc.xml</load-config>
-				<target-player>12.0.0</target-player>
+				<load-config>flex-config.xml</load-config>
 				<debug>${build.debug}</debug>
 			</compc>
 	    </sequential>
