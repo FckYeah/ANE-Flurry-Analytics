@@ -73,6 +73,8 @@ Also see https://wiki.apache.org/ant/TheElementsOfAntStyle
 	<!-- Check if ${debug} is false and if it is, set the properties below for a release build -->
 	<target name="-check-release" unless="${build.debug}">
 	    <property name="iOS.library.build.type" value="Release"/>
+	    <property name="build.debug" value="false"/>
+   	    <property name="javac.debug" value="off"/>
 	</target>
 	
 	<target name="prepare" depends="init"
@@ -107,14 +109,14 @@ Also see https://wiki.apache.org/ant/TheElementsOfAntStyle
 			<arg value='-target'/>
 			<arg value='${name}IosExtension'/>
 			<arg value='-configuration'/>
-			<arg value='Release'/>
+			<arg value='${iOS.library.build.type}'/>
 			<arg value='SYMROOT=${ios.build.dir}'/>
 		</exec>
 		<copy file="${ios.build.dir}/Release-iphoneos/lib${name}IosExtension.a" todir="build/ios" overwrite="true"/>
 	</target>
 		
 	<target name="android" depends="prepare" description="Build android Library">
-		<javac srcdir="${android.src.dir}" destdir="${android.class.dir}" includeantruntime="false">
+		<javac srcdir="${android.src.dir}" destdir="${android.class.dir}" includeantruntime="false" debug="${javac.debug}">
 			<classpath>
 				<pathelement location="${android.sdk}/platforms/android-7/android.jar"/>
 				<pathelement location="${android.lib.dir}/FlashRuntimeExtensions.jar"/>
@@ -151,6 +153,7 @@ Also see https://wiki.apache.org/ant/TheElementsOfAntStyle
 				<load-config>compc.xml</load-config>
 				<swf-version>25</swf-version>
 				<target-player>14.0.0</target-player>
+				<debug>${build.debug}</debug>
 			</compc>
 	    </sequential>
 	</macrodef>
