@@ -112,7 +112,7 @@ Also see https://wiki.apache.org/ant/TheElementsOfAntStyle
 			<arg value='${iOS.library.build.type}'/>
 			<arg value='SYMROOT=${ios.build.dir}'/>
 		</exec>
-		<copy file="${ios.build.dir}/Release-iphoneos/lib${name}IosExtension.a" todir="build/ios" overwrite="true"/>
+		<copy file="${ios.build.dir}/${iOS.library.build.type}-iphoneos/lib${name}IosExtension.a" todir="build/ios" overwrite="true"/>
 	</target>
 		
 	<target name="android" depends="prepare" description="Build android Library">
