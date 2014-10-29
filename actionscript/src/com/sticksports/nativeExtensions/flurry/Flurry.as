@@ -29,6 +29,7 @@ package com.sticksports.nativeExtensions.flurry
 		private static var _sessionStarted : Boolean;
 		private static var _sessionContinueSeconds : int = 10;
 		private static var _secureTransportEnabled : Boolean = false;
+		private static var _crashReportingEnabled : Boolean = false;
 		private static var _eventLoggingEnabled : Boolean = true;
 
 		/**
@@ -84,6 +85,23 @@ package com.sticksports.nativeExtensions.flurry
 				initExtension();
 				extensionContext.call( NativeMethods.setSecureTransportEnabled, value );
 				_secureTransportEnabled = value;
+			}
+		}
+		
+		/**
+		 * Set data to be sent over SSL. Should be called before start session. Default is false.
+		 */
+		public static function get crashReportingEnabled() : Boolean
+		{
+			return _crashReportingEnabled;
+		}
+		public static function set crashReportingEnabled( value : Boolean ) : void
+		{
+			if( !_sessionStarted )
+			{
+				initExtension();
+				extensionContext.call( NativeMethods.setCrashReportingEnabled, value );
+				_crashReportingEnabled = value;
 			}
 		}
 		
