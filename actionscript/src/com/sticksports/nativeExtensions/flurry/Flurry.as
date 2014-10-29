@@ -29,6 +29,7 @@ package com.sticksports.nativeExtensions.flurry
 		private static var _sessionStarted : Boolean;
 		private static var _sessionContinueSeconds : int = 10;
 		private static var _secureTransportEnabled : Boolean = false;
+		private static var _crashReportingEnabled : Boolean = false;
 		private static var _eventLoggingEnabled : Boolean = true;
 
 		/**
