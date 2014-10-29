@@ -88,6 +88,18 @@ package com.sticksports.nativeExtensions.flurry
 		}
 		
 		/**
+		 * Enable crash reporting. Should be called before start session. Default is false.
+		 */
+		public static function setCrashReportingEnabled( value : Boolean ) : void
+		{
+			if( !_sessionStarted )
+			{
+				initExtension();
+				extensionContext.call( NativeMethods.setCrashReportingEnabled, value );
+			}
+		}
+		
+		/**
 		 * Start session, attempt to send saved sessions to the server.
 		 */
 		public static function startSession( id : String ) : void
