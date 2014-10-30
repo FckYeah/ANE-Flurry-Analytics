@@ -65,6 +65,23 @@ DEFINE_ANE_FUNCTION( flurry_setSecureTransportEnabled )
     return NULL;
 }
 
+DEFINE_ANE_FUNCTION( flurry_setCrashReportingEnabled )
+{
+    uint32_t value = 0;
+    if (FREGetObjectAsBool( argv[0], &value ) == FRE_OK )
+    {
+        if( value == 0 )
+        {
+            [Flurry setCrashReportingEnabled:NO];
+        }
+        else
+        {
+            [Flurry setCrashReportingEnabled:YES];
+        }
+    }
+    return NULL;
+}
+
 DEFINE_ANE_FUNCTION( flurry_startSession )
 {
     NSString* sessionId;
@@ -222,36 +239,6 @@ DEFINE_ANE_FUNCTION( flurry_endTimedEvent )
     else
     {
         [Flurry endTimedEvent:event withParameters:Nil];
-    }
-    return NULL;
-}
-
-DEFINE_ANE_FUNCTION( flurry_setUserId )
-{
-    NSString* userId;
-    if( [flurryTypeConverter FREGetObject:argv[0] asString:&userId ] == FRE_OK )
-    {
-        [Flurry setUserID:userId];
-    }
-    return NULL;
-}
-
-DEFINE_ANE_FUNCTION( flurry_setUserAge )
-{
-    int32_t value = 0;
-    if (FREGetObjectAsInt32( argv[0], &value ) == FRE_OK )
-    {
-        [Flurry setAge:value];
-    }
-    return NULL;
-}
-
-DEFINE_ANE_FUNCTION( flurry_setUserGender )
-{
-    NSString* userGender;
-    if( [flurryTypeConverter FREGetObject:argv[0] asString:&userGender ] == FRE_OK )
-    {
-        [Flurry setGender:userGender];
     }
     return NULL;
 }
