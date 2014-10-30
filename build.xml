@@ -127,7 +127,7 @@ Also see https://wiki.apache.org/ant/TheElementsOfAntStyle
 
 		<unzip src="${android.lib.dir}/flurryAnalytics-${flurry.android.version}.jar" dest="${android.class.dir}"/>
 		<jar 
-		    basedir="${android.class.dir}" manifest="${android.basedir}/AndroidManifest.xml"
+		    basedir="${android.class.dir}"
 		    destfile="${build.android.dir}/${name}AndroidExtension.jar">
 		    <manifest>
 		        <attribute name="Implementation-Vendor" value="StickSports"/>
