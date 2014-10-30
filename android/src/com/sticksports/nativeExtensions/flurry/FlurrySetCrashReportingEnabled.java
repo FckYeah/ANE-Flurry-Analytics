@@ -13,14 +13,6 @@ public class FlurrySetCrashReportingEnabled implements FREFunction
 	@Override
 	public FREObject call( FREContext context, FREObject[] args )
 	{
-		try
-		{
-			boolean reporting = args[0].getAsBool();
-		}
-		catch ( Exception exception )
-		{
-			Log.w( "Flurry", exception );
-		}
 		return null;
 	}
 }
