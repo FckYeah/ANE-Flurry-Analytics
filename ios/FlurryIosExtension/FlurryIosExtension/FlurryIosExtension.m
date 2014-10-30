@@ -65,6 +65,23 @@ DEFINE_ANE_FUNCTION( flurry_setSecureTransportEnabled )
     return NULL;
 }
 
+DEFINE_ANE_FUNCTION( flurry_setCrashReportingEnabled )
+{
+    uint32_t value = 0;
+    if (FREGetObjectAsBool( argv[0], &value ) == FRE_OK )
+    {
+        if( value == 0 )
+        {
+            [Flurry setCrashReportingEnabled:NO];
+        }
+        else
+        {
+            [Flurry setCrashReportingEnabled:YES];
+        }
+    }
+    return NULL;
+}
+
 DEFINE_ANE_FUNCTION( flurry_startSession )
 {
     NSString* sessionId;
@@ -226,36 +243,6 @@ DEFINE_ANE_FUNCTION( flurry_endTimedEvent )
     return NULL;
 }
 
-DEFINE_ANE_FUNCTION( flurry_setUserId )
-{
-    NSString* userId;
-    if( [flurryTypeConverter FREGetObject:argv[0] asString:&userId ] == FRE_OK )
-    {
-        [Flurry setUserID:userId];
-    }
-    return NULL;
-}
-
-DEFINE_ANE_FUNCTION( flurry_setUserAge )
-{
-    int32_t value = 0;
-    if (FREGetObjectAsInt32( argv[0], &value ) == FRE_OK )
-    {
-        [Flurry setAge:value];
-    }
-    return NULL;
-}
-
-DEFINE_ANE_FUNCTION( flurry_setUserGender )
-{
-    NSString* userGender;
-    if( [flurryTypeConverter FREGetObject:argv[0] asString:&userGender ] == FRE_OK )
-    {
-        [Flurry setGender:userGender];
-    }
-    return NULL;
-}
-
 DEFINE_ANE_FUNCTION( flurry_setLocation )
 {
     // latitude : Number, longitude : Number, horizontalAccuracy : Number, verticalAccuracy : Number
@@ -297,15 +284,13 @@ void FlurryContextInitializer( void* extData, const uint8_t* ctxType, FREContext
         MAP_FUNCTION( flurry_getFlurryAgentVersion, NULL ),
         MAP_FUNCTION( flurry_setSessionContinueSeconds, NULL ),
         MAP_FUNCTION( flurry_setSecureTransportEnabled, NULL ),
+        MAP_FUNCTION( flurry_setCrashReportingEnabled, NULL ),
         MAP_FUNCTION( flurry_startSession, NULL ),
         MAP_FUNCTION( flurry_endSession, NULL ),
         MAP_FUNCTION( flurry_logEvent, NULL ),
         MAP_FUNCTION( flurry_logError, NULL ),
         MAP_FUNCTION( flurry_startTimedEvent, NULL ),
         MAP_FUNCTION( flurry_endTimedEvent, NULL ),
-        MAP_FUNCTION( flurry_setUserId, NULL ),
-        MAP_FUNCTION( flurry_setUserAge, NULL ),
-        MAP_FUNCTION( flurry_setUserGender, NULL ),
         MAP_FUNCTION( flurry_setLocation, NULL ),
         MAP_FUNCTION( flurry_setEventLoggingEnabled, NULL )
     };
