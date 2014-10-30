@@ -126,7 +126,15 @@ Also see https://wiki.apache.org/ant/TheElementsOfAntStyle
 		</javac>
 
 		<unzip src="${android.lib.dir}/flurryAnalytics-${flurry.android.version}.jar" dest="${android.class.dir}"/>
-		<jar basedir="${android.class.dir}" destfile="${build.android.dir}/${name}AndroidExtension.jar"/>
+		<jar 
+		    basedir="${android.class.dir}" manifest="${android.basedir}/AndroidManifest.xml"
+		    destfile="${build.android.dir}/${name}AndroidExtension.jar">
+		    <manifest>
+		        <attribute name="Implementation-Vendor" value="StickSports"/>
+        		<attribute name="Implementation-Title" value="Flurry Android Extension for AIR SDK"/>
+        		<attribute name="Implementation-Version" value="0.5.1"/>
+		    </manifest>
+		</jar>
 	</target>
 		
 	<target name="swc" depends="prepare" description="Build swc library">
