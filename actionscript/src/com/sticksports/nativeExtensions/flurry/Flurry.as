@@ -220,41 +220,41 @@ package com.sticksports.nativeExtensions.flurry
 				extensionContext = null;
 			}
 		}
-	}
 	
-	/**
-	 * Get application vendor ID.
-	 */
-	public static function get vendorID() : String
-	{
-		initExtension();
-		var id : String = String( extensionContext.call( NativeMethods.getVendorID ) );
-		return id;
-	}
-	
-	/**
-	 * Enable crash reporting. Should be called before start session. Default is false.
-	 * 
-	 * @deprecated
-	 */
-	public static function setCrashReporting( value : Boolean ) : void
-	{
-		if( !_sessionStarted )
+		/**
+		 * Get application vendor ID.
+		 */
+		public static function get vendorID() : String
 		{
 			initExtension();
-			extensionContext.call( NativeMethods.setCrashReportingEnabled, value );
+			var id : String = String( extensionContext.call( NativeMethods.getVendorID ) );
+			return id;
 		}
-	}
 	
-	/**
-	 * Enable crash reporting. Should be called before start session. Default is false.
-	 */
-	public static function setCrashReportingEnabled( value : Boolean ) : void
-	{
-		if( !_sessionStarted )
+		/**
+		 * Enable crash reporting. Should be called before start session. Default is false.
+		 * 
+		 * @deprecated
+		 */
+		public static function setCrashReporting( value : Boolean ) : void
 		{
-			initExtension();
-			extensionContext.call( NativeMethods.setCrashReportingEnabled, value );
+			if( !_sessionStarted )
+			{
+				initExtension();
+				extensionContext.call( NativeMethods.setCrashReportingEnabled, value );
+			}
+		}
+	
+		/**
+		 * Enable crash reporting. Should be called before start session. Default is false.
+		 */
+		public static function setCrashReportingEnabled( value : Boolean ) : void
+		{
+			if( !_sessionStarted )
+			{
+				initExtension();
+				extensionContext.call( NativeMethods.setCrashReportingEnabled, value );
+			}
 		}
 	}
 }
