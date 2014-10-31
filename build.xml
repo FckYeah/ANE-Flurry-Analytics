@@ -130,9 +130,10 @@ Also see https://wiki.apache.org/ant/TheElementsOfAntStyle
 		    basedir="${android.class.dir}"
 		    destfile="${build.android.dir}/${name}AndroidExtension.jar">
 		    <manifest>
-		        <attribute name="Implementation-Vendor" value="StickSports"/>
+		        <attribute name="Implementation-Vendor" value="Poptropica"/>
         		<attribute name="Implementation-Title" value="Flurry Android Extension for AIR SDK"/>
         		<attribute name="Implementation-Version" value="0.5.1"/>
+        		<attribute name="Extension-Name" value="com.sticksports.nativeExtensions.flurry.FlurryExtension"/>
 		    </manifest>
 		</jar>
 	</target>
