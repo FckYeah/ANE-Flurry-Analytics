@@ -209,11 +209,11 @@ Also see https://wiki.apache.org/ant/TheElementsOfAntStyle
 			<arg value="${build.android.dir}/"/>
 			<arg value="."/>
 			
-<!-- 			<arg value="-platform"/> -->
-<!-- 			<arg value="Android-x86"/> -->
-<!-- 			<arg value="-C"/> -->
-<!-- 			<arg value="${build.android.dir}/"/> -->
-<!-- 			<arg value="."/> -->
+			<arg value="-platform"/>
+			<arg value="Android-x86"/>
+			<arg value="-C"/>
+			<arg value="${build.android.dir}/"/>
+			<arg value="."/>
 			
 			<arg value="-platform"/>
 			<arg value="default"/>
