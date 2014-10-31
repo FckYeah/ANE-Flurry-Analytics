@@ -6,7 +6,6 @@ package com.sticksports.nativeExtensions.flurry
         internal static const getFlurryAgentVersion : String = "flurry_getFlurryAgentVersion";
         internal static const setSessionContinueSeconds : String = "flurry_setSessionContinueSeconds";
         internal static const setSecureTransportEnabled : String = "flurry_setSecureTransportEnabled";
-        internal static const setCrashReportingEnabled : String = "flurry_setCrashReportingEnabled";
         internal static const startSession : String = "flurry_startSession";
         internal static const endSession : String = "flurry_endSession";
         internal static const logEvent : String = "flurry_logEvent";
@@ -15,5 +14,7 @@ package com.sticksports.nativeExtensions.flurry
         internal static const endTimedEvent : String = "flurry_endTimedEvent";
         internal static const setLocation : String = "flurry_setLocation";
         internal static const setEventLoggingEnabled : String = "flurry_setEventLoggingEnabled";
+		internal static const getVendorID : String = "flurry_getVendorID";
+        internal static const setCrashReportingEnabled : String = "flurry_setCrashReportingEnabled";
 	}
 }

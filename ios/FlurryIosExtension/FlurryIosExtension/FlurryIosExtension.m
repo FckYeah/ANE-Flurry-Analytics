@@ -65,23 +65,6 @@ DEFINE_ANE_FUNCTION( flurry_setSecureTransportEnabled )
     return NULL;
 }
 
-DEFINE_ANE_FUNCTION( flurry_setCrashReportingEnabled )
-{
-    uint32_t value = 0;
-    if (FREGetObjectAsBool( argv[0], &value ) == FRE_OK )
-    {
-        if( value == 0 )
-        {
-            [Flurry setCrashReportingEnabled:NO];
-        }
-        else
-        {
-            [Flurry setCrashReportingEnabled:YES];
-        }
-    }
-    return NULL;
-}
-
 DEFINE_ANE_FUNCTION( flurry_startSession )
 {
     NSString* sessionId;
@@ -277,6 +260,34 @@ DEFINE_ANE_FUNCTION( flurry_setEventLoggingEnabled )
     return NULL;
 }
 
+DEFINE_ANE_FUNCTION( flurry_getVendorID )
+{
+    NSString* str = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
+    FREObject result;
+    if ( [flurryTypeConverter FREGetString:str asObject:&result ] == FRE_OK )
+    {
+        return result;
+    }
+    return NULL;
+}
+
+DEFINE_ANE_FUNCTION( flurry_setCrashReportingEnabled )
+{
+    uint32_t value = 0;
+    if (FREGetObjectAsBool( argv[0], &value ) == FRE_OK )
+    {
+        if( value == 0 )
+        {
+            [Flurry setCrashReportingEnabled:NO];
+        }
+        else
+        {
+            [Flurry setCrashReportingEnabled:YES];
+        }
+    }
+    return NULL;
+}
+
 void FlurryContextInitializer( void* extData, const uint8_t* ctxType, FREContext ctx, uint32_t* numFunctionsToSet, const FRENamedFunction** functionsToSet )
 {
     static FRENamedFunction functionMap[] = {
@@ -284,7 +295,6 @@ void FlurryContextInitializer( void* extData, const uint8_t* ctxType, FREContext
         MAP_FUNCTION( flurry_getFlurryAgentVersion, NULL ),
         MAP_FUNCTION( flurry_setSessionContinueSeconds, NULL ),
         MAP_FUNCTION( flurry_setSecureTransportEnabled, NULL ),
-        MAP_FUNCTION( flurry_setCrashReportingEnabled, NULL ),
         MAP_FUNCTION( flurry_startSession, NULL ),
         MAP_FUNCTION( flurry_endSession, NULL ),
         MAP_FUNCTION( flurry_logEvent, NULL ),
@@ -292,7 +302,9 @@ void FlurryContextInitializer( void* extData, const uint8_t* ctxType, FREContext
         MAP_FUNCTION( flurry_startTimedEvent, NULL ),
         MAP_FUNCTION( flurry_endTimedEvent, NULL ),
         MAP_FUNCTION( flurry_setLocation, NULL ),
-        MAP_FUNCTION( flurry_setEventLoggingEnabled, NULL )
+        MAP_FUNCTION( flurry_setEventLoggingEnabled, NULL ),
+        MAP_FUNCTION( flurry_getVendorID, NULL ),
+        MAP_FUNCTION( flurry_setCrashReportingEnabled, NULL )
     };
     
 	*numFunctionsToSet = sizeof( functionMap ) / sizeof( FRENamedFunction );

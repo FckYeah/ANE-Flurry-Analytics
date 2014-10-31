@@ -156,6 +156,30 @@ package com.sticksports.nativeExtensions.flurry
 		public static function dispose() : void
 		{
 		}
+
+		/**
+		 * Get application vendor ID.
+		 */
+		public static function get vendorID() : String
+		{
+			return 'FAKEVENDORID';
+		}
+		
+		/**
+		 * Enable crash reporting. Should be called before start session. Default is false.
+		 * 
+		 * @deprecated
+		 */
+		public static function setCrashReporting( value : Boolean ) : void
+		{
+		}
+		
+		/**
+		 * Enable crash reporting. Should be called before start session. Default is false.
+		 */
+		public static function setCrashReportingEnabled( value : Boolean ) : void
+		{
+		}
 	}
 }
 

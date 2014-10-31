@@ -89,18 +89,6 @@ package com.sticksports.nativeExtensions.flurry
 		}
 		
 		/**
-		 * Enable crash reporting. Should be called before start session. Default is false.
-		 */
-		public static function setCrashReportingEnabled( value : Boolean ) : void
-		{
-			if( !_sessionStarted )
-			{
-				initExtension();
-				extensionContext.call( NativeMethods.setCrashReportingEnabled, value );
-			}
-		}
-		
-		/**
 		 * Start session, attempt to send saved sessions to the server.
 		 */
 		public static function startSession( id : String ) : void
@@ -231,6 +219,42 @@ package com.sticksports.nativeExtensions.flurry
 				extensionContext.dispose();
 				extensionContext = null;
 			}
+		}
+	}
+	
+	/**
+	 * Get application vendor ID.
+	 */
+	public static function get vendorID() : String
+	{
+		initExtension();
+		var id : String = String( extensionContext.call( NativeMethods.getVendorID ) );
+		return id;
+	}
+	
+	/**
+	 * Enable crash reporting. Should be called before start session. Default is false.
+	 * 
+	 * @deprecated
+	 */
+	public static function setCrashReporting( value : Boolean ) : void
+	{
+		if( !_sessionStarted )
+		{
+			initExtension();
+			extensionContext.call( NativeMethods.setCrashReportingEnabled, value );
+		}
+	}
+	
+	/**
+	 * Enable crash reporting. Should be called before start session. Default is false.
+	 */
+	public static function setCrashReportingEnabled( value : Boolean ) : void
+	{
+		if( !_sessionStarted )
+		{
+			initExtension();
+			extensionContext.call( NativeMethods.setCrashReportingEnabled, value );
 		}
 	}
 }
