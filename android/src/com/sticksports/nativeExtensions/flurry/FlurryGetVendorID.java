@@ -5,7 +5,7 @@ import com.adobe.fre.FREFunction;
 import com.adobe.fre.FREObject;
 import com.flurry.android.FlurryAgent;
 
-public class FlurryGetVendorId implements FREFunction
+public class FlurryGetVendorID implements FREFunction
 {
 
 	@Override
