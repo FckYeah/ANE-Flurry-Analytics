@@ -99,7 +99,7 @@ Also see https://wiki.apache.org/ant/TheElementsOfAntStyle
 	    <delete dir="${android.build.dir}"/>
    	</target>
 	
-	<target name="compile" depends="ios,android,swc,swc,swc-default" description="Build native libraries"/>
+	<target name="compile" depends="android,swc,swc,swc-default" description="Build native libraries"/>
 	
 	<target name="all" depends="compile,package" description="Full build of extension"/>
 		
@@ -119,7 +119,7 @@ Also see https://wiki.apache.org/ant/TheElementsOfAntStyle
 	<target name="android" depends="prepare" description="Build android Library">
 		<javac srcdir="${android.src.dir}" destdir="${android.class.dir}" includeantruntime="false" debug="${javac.debug}">
 			<classpath>
-				<pathelement location="${android.sdk}/platforms/android-7/android.jar"/>
+				<pathelement location="${android.sdk}/android.jar"/>
 				<pathelement location="${android.lib.dir}/FlashRuntimeExtensions.jar"/>
 				<pathelement location="${android.lib.dir}/flurryAnalytics-${flurry.android.version}.jar"/>
 			</classpath>
