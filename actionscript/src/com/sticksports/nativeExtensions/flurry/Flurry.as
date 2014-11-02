@@ -13,7 +13,7 @@ package com.sticksports.nativeExtensions.flurry
 		{
 			if ( !extensionContext )
 			{
-				extensionContext = ExtensionContext.createExtensionContext( "com.sticksports.nativeExtensions.Flurry", null );
+				extensionContext = ExtensionContext.createExtensionContext( "com.sticksports.nativeExtensions.flurry", null );
 			}
 		}
 		
