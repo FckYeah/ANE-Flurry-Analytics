@@ -99,7 +99,7 @@ Also see https://wiki.apache.org/ant/TheElementsOfAntStyle
 	    <delete dir="${android.build.dir}"/>
    	</target>
 	
-	<target name="compile" depends="android,swc,swc,swc-default" description="Build native libraries"/>
+	<target name="compile" depends="ios,android,swc,swc,swc-default" description="Build native libraries"/>
 	
 	<target name="all" depends="compile,package" description="Full build of extension"/>
 		
