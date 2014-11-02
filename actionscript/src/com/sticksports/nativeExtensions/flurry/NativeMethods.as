@@ -15,6 +15,7 @@ package com.sticksports.nativeExtensions.flurry
         internal static const setLocation : String = "flurry_setLocation";
         internal static const setEventLoggingEnabled : String = "flurry_setEventLoggingEnabled";
 		internal static const getVendorID : String = "flurry_getVendorID";
+        internal static const setCrashReporting : String = "flurry_setCrashReportingEnabled";
         internal static const setCrashReportingEnabled : String = "flurry_setCrashReportingEnabled";
 	}
 }
