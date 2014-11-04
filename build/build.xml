@@ -93,12 +93,6 @@
 	<target name="package" description="Create the extension package">
 		<exec executable="${sdk.home}/bin/adt${bin.ext}" failonerror="true" dir="../temp">
 			<arg value="-package"/>
-			<arg value="-storetype"/>
-			<arg value="pkcs12"/>
-			<arg value="-keystore"/>
-			<arg value="${keystore.file}"/>
-			<arg value="-storepass"/>
-			<arg value="${keystore.password}"/>
 			<arg value="-target"/>
 			<arg value="ane"/>
 			<arg value="${name}.ane"/>
