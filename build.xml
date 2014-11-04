@@ -120,21 +120,20 @@ Also see https://wiki.apache.org/ant/TheElementsOfAntStyle
 		<javac srcdir="${android.src.dir}" destdir="${android.class.dir}" includeantruntime="false" debug="${javac.debug}">
 			<classpath>
 				<pathelement location="${android.sdk}/android.jar"/>
-				<pathelement location="${android.lib.dir}/FlashRuntimeExtensions.jar"/>
+				<pathelement location="${AIR.SDK.HOME}/lib/android/FlashRuntimeExtensions.jar"/>
 				<pathelement location="${android.lib.dir}/flurryAnalytics-${flurry.android.version}.jar"/>
 			</classpath>
 		</javac>
 
-		<unzip src="${android.lib.dir}/flurryAnalytics-${flurry.android.version}.jar" dest="${android.class.dir}"/>
-		<jar 
-		    basedir="${android.class.dir}"
-		    destfile="${build.android.dir}/${name}AndroidExtension.jar">
-		    <manifest>
-		        <attribute name="Implementation-Vendor" value="Poptropica"/>
-        		<attribute name="Implementation-Title" value="Flurry Android Extension for AIR SDK"/>
-        		<attribute name="Implementation-Version" value="0.5.1"/>
-        		<attribute name="Extension-Name" value="com.sticksports.nativeExtensions.flurry.FlurryExtension"/>
-		    </manifest>
+		<jar destfile="${build.android.dir}/${name}AndroidExtension.jar">
+			<fileset dir="${android.class.dir}"/>
+			<zipfileset includes="**/*.class" src="${android.lib.dir}/flurryAnalytics-${flurry.android.version}.jar"/>
+			<manifest>
+				<attribute name="Implementation-Vendor" value="Poptropica"/>
+				<attribute name="Implementation-Title" value="Flurry Android Extension for AIR SDK"/>
+				<attribute name="Implementation-Version" value="0.5.1"/>
+				<attribute name="Extension-Name" value="com.sticksports.nativeExtensions.flurry.FlurryExtension"/>
+			</manifest>
 		</jar>
 	</target>
 		
