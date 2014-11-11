@@ -22,3 +22,4 @@ xcuserdata
 Icon
 Thumbs.db
 .DS_Store
+/build.properties
