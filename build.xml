@@ -50,7 +50,7 @@
 		</javac>
 
 		<mkdir dir="${project.buid.dir}/android/"/>
-		<jar basedir="${project.android.dir}/temp/classes" destfile="${project.buid.dir}/android/${name}AndroidExtension.jar">
+		<jar destfile="${project.buid.dir}/android/${name}AndroidExtension.jar">
    		    <fileset dir="${project.android.dir}/temp/classes"/>
 		    <zipfileset includes="**/*.class" src="${project.android.dir}/libs/FlurryAnalytics-${flurry.analytics.android.version}.jar"/>
 	    </jar>
