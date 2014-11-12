@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Air Native Extension Build Scripts" default="all">
+	
+	<property file="build.properties"/>
+	<property file="default.properties"/>
+	<property name="AIR_SDK_HOME" location="${air.sdk.home}" />
+	<taskdef resource="flexTasks.tasks" classpath="${AIR_SDK_HOME}/ant/lib/flexTasks.jar" />
+	
+	<property name="project.dir" location="${basedir}" />
+	<property name="project.actionscript.dir" location="${project.dir}/actionscript" />
+	<property name="project.android.dir" location="${project.dir}/android" />
+	<property name="project.bin.dir" location="${project.dir}/bin" />
+	<property name="project.build.dir" location="${project.dir}/build" />
+	<property name="project.default.dir" location="${project.dir}/default" />
+	<property name="project.ios.dir" location="${project.dir}/ios" />
+	<property name="project.buid.dir" location="${project.dir}/build" />
+	
+	<target name="all" depends="ios,android,swc,default,package" description="Full build of extension"/>
+
+	<target name="ios" description="Build iOS Library">
+		<mkdir dir="${project.buid.dir}/ios/build/"/>
+
+		<exec executable="xcodebuild" failonerror="true" dir="${project.ios.dir}/${name}IosExtension">
+			<arg value='-project'/>
+			<arg value='${name}IosExtension.xcodeproj'/>
+			<arg value='-target'/>
+			<arg value='${name}IosExtension'/>
+			<arg value='-configuration'/>
+			<arg value='Release'/>
+			<arg value='SYMROOT=${project.buid.dir}/ios/build/'/>
+		</exec>
+		
+		<copy file="${project.buid.dir}/ios/build/Release-iphoneos/lib${name}IosExtension.a" todir="${project.buid.dir}/ios" overwrite="true"/>
+		
+		<delete dir="${project.buid.dir}/ios/build/"/>
+	</target>
+		
+	<target name="android" description="Build android Library">
+		<delete dir="${project.android.dir}/temp"/>
+		<mkdir dir="${project.android.dir}/temp/classes"/>
+
+		<javac srcdir="${project.android.dir}/src" destdir="${project.android.dir}/temp/classes" includeantruntime="false"
+		    target="1.6" source="1.6">
+			<classpath>
+				<pathelement location="${android.sdk}/android.jar"/>
+				<pathelement location="${air.sdk.home}/lib/android/FlashRuntimeExtensions.jar"/>
+				<pathelement location="${project.android.dir}/libs/FlurryAnalytics-${flurry.analytics.android.version}.jar"/>
+			</classpath>
+		</javac>
+
+		<mkdir dir="${project.buid.dir}/android/"/>
+		<jar basedir="${project.android.dir}/temp/classes" destfile="${project.buid.dir}/android/${name}AndroidExtension.jar">
+   		    <fileset dir="${project.android.dir}/temp/classes"/>
+		    <zipfileset includes="**/*.class" src="${project.android.dir}/libs/FlurryAnalytics-${flurry.analytics.android.version}.jar"/>
+	    </jar>
+		<delete dir="${project.android.dir}/temp"/>
+	</target>
+		
+	<target name="swc" description="Build swc library">
+		<compc output="${project.bin.dir}/${name}.swc">
+			<source-path path-element="${project.actionscript.dir}/src" />
+			<include-sources dir="${project.actionscript.dir}/src" includes="**/*.as" />
+			<external-library-path dir="${air.sdk.home}/frameworks/libs/air" append="true" includes="airglobal.swc" />
+			<swf-version>${swf.version}</swf-version>
+			<load-config>${project.dir}/flex-config.xml</load-config>
+		</compc>
+
+		<unzip src="${project.bin.dir}/${name}.swc" dest="${project.buid.dir}/ios" overwrite="true">
+			<patternset includes="library.swf" />
+		</unzip>
+		<copy file="${project.buid.dir}/ios/library.swf" todir="${project.buid.dir}/android"
+			overwrite="true" />
+	</target>
+	
+	<target name="default" description="Build default swc library">
+		<mkdir dir="${project.buid.dir}/default/"/>
+		<compc output="${project.buid.dir}/default/${name}.swc">
+			<source-path path-element="${project.default.dir}/src" />
+			<include-sources dir="${project.default.dir}/src" includes="**/*.as" />
+			<external-library-path dir="${air.sdk.home}/frameworks/libs/air" append="true" includes="airglobal.swc" />
+			<swf-version>${swf.version}</swf-version>
+			<load-config>${project.dir}/flex-config.xml</load-config>
+		</compc>
+		
+		<unzip src="${project.buid.dir}/default/${name}.swc" dest="${project.buid.dir}/default" overwrite="true">
+			<patternset includes="library.swf" />
+		</unzip>
+		<delete file="${project.buid.dir}/default/${name}.swc"/>
+	</target>
+	
+	<target name="package" description="Create the extension package">
+		<exec executable="${air.sdk.home}/bin/adt${bin.ext}" failonerror="true" dir="${project.buid.dir}">
+			<arg value="-package"/>
+
+			<arg value="-target"/>
+			<arg value="ane"/>
+			<arg value="${project.bin.dir}/${name}.ane"/>
+			<arg value="${project.dir}/extension.xml"/>
+
+			<arg value="-swc"/>
+			<arg value="${project.bin.dir}/${name}.swc"/>
+
+			<arg value="-platform"/>
+			<arg value="iPhone-ARM"/>
+			<arg value="-platformoptions"/>
+			<arg value="${project.dir}/platform.xml"/>
+			<arg value="-C"/>
+			<arg value="ios/"/>
+			<arg value="."/>
+
+			<arg value="-platform"/>
+			<arg value="Android-ARM"/>
+			<arg value="-C"/>
+			<arg value="android/"/>
+			<arg value="."/>
+
+			<arg value="-platform"/>
+			<arg value="Android-x86"/>
+			<arg value="-C"/>
+			<arg value="android/"/>
+			<arg value="."/>
+
+			<arg value="-platform"/>
+			<arg value="default"/>
+			<arg value="-C"/>
+			<arg value="default/"/>
+			<arg value="."/>
+		</exec>
+	</target>
+</project>
