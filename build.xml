@@ -5,7 +5,8 @@
 	<property file="default.properties"/>
 	<property name="AIR_SDK_HOME" location="${air.sdk.home}" />
 	<taskdef resource="flexTasks.tasks" classpath="${AIR_SDK_HOME}/ant/lib/flexTasks.jar" />
-	
+	<property name="adt.jar" location="${air.sdk.home}/lib/adt.jar" />
+		
 	<property name="project.dir" location="${basedir}" />
 	<property name="project.actionscript.dir" location="${project.dir}/actionscript" />
 	<property name="project.android.dir" location="${project.dir}/android" />
