@@ -273,7 +273,8 @@ void FlurryContextInitializer( void* extData, const uint8_t* ctxType, FREContext
         MAP_FUNCTION( flurry_logError, NULL ),
         MAP_FUNCTION( flurry_startTimedEvent, NULL ),
         MAP_FUNCTION( flurry_endTimedEvent, NULL ),
-        MAP_FUNCTION( flurry_setEventLoggingEnabled, NULL )
+        MAP_FUNCTION( flurry_setEventLoggingEnabled, NULL ),
+        MAP_FUNCTION( flurry_setCrashReportingEnabled, NULL )
     };
     
 	*numFunctionsToSet = sizeof( functionMap ) / sizeof( FRENamedFunction );
