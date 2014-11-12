@@ -58,7 +58,8 @@
 	</target>
 		
 	<target name="swc" description="Build swc library">
-		<compc output="${project.bin.dir}/${name}.swc">
+		<compc output="${project.bin.dir}/${name}.swc"
+		    target-player="${target.player}">
 			<source-path path-element="${project.actionscript.dir}/src" />
 			<include-sources dir="${project.actionscript.dir}/src" includes="**/*.as" />
 			<external-library-path dir="${air.sdk.home}/frameworks/libs/air" append="true" includes="airglobal.swc" />
@@ -75,7 +76,8 @@
 	
 	<target name="default" description="Build default swc library">
 		<mkdir dir="${project.buid.dir}/default/"/>
-		<compc output="${project.buid.dir}/default/${name}.swc">
+		<compc output="${project.buid.dir}/default/${name}.swc"
+		    target-player="${target.player}">
 			<source-path path-element="${project.default.dir}/src" />
 			<include-sources dir="${project.default.dir}/src" includes="**/*.as" />
 			<external-library-path dir="${air.sdk.home}/frameworks/libs/air" append="true" includes="airglobal.swc" />
