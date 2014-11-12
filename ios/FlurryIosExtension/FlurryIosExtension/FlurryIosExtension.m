@@ -243,6 +243,23 @@ DEFINE_ANE_FUNCTION( flurry_setEventLoggingEnabled )
     return NULL;
 }
 
+DEFINE_ANE_FUNCTION( flurry_setCrashReportingEnabled )
+{
+    uint32_t value = 0;
+    if (FREGetObjectAsBool( argv[0], &value ) == FRE_OK )
+    {
+        if( value == 0 )
+        {
+            [Flurry setCrashReportingEnabled:NO];
+        }
+        else
+        {
+            [Flurry setCrashReportingEnabled:YES];
+        }
+    }
+    return NULL;
+}
+
 void FlurryContextInitializer( void* extData, const uint8_t* ctxType, FREContext ctx, uint32_t* numFunctionsToSet, const FRENamedFunction** functionsToSet )
 {
     static FRENamedFunction functionMap[] = {

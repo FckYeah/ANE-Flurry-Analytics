@@ -13,5 +13,6 @@ package com.sticksports.nativeExtensions.flurry
         internal static const startTimedEvent : String = "flurry_startTimedEvent";
         internal static const endTimedEvent : String = "flurry_endTimedEvent";
         internal static const setEventLoggingEnabled : String = "flurry_setEventLoggingEnabled";
+        internal static const setCrashReportingEnabled : String = "flurry_setCrashReportingEnabled";
 	}
 }

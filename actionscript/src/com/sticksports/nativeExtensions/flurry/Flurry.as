@@ -200,6 +200,18 @@ package com.sticksports.nativeExtensions.flurry
 		}
 		
 		/**
+		 * Enable crash reporting. Should be called before start session.
+		 */
+		public static function setCrashReportingEnabled( value : Boolean ) : void
+		{
+			if( !_sessionStarted )
+			{
+				initExtension();
+				extensionContext.call( NativeMethods.setCrashReportingEnabled, value );
+			}
+		}
+
+		/**
 		 * Clean up the extension - only if you no longer need it or want to free memory.
 		 */
 		public static function dispose() : void
