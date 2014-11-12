@@ -226,53 +226,6 @@ DEFINE_ANE_FUNCTION( flurry_endTimedEvent )
     return NULL;
 }
 
-DEFINE_ANE_FUNCTION( flurry_setUserId )
-{
-    NSString* userId;
-    if( [flurryTypeConverter FREGetObject:argv[0] asString:&userId ] == FRE_OK )
-    {
-        [Flurry setUserID:userId];
-    }
-    return NULL;
-}
-
-DEFINE_ANE_FUNCTION( flurry_setUserAge )
-{
-    int32_t value = 0;
-    if (FREGetObjectAsInt32( argv[0], &value ) == FRE_OK )
-    {
-        [Flurry setAge:value];
-    }
-    return NULL;
-}
-
-DEFINE_ANE_FUNCTION( flurry_setUserGender )
-{
-    NSString* userGender;
-    if( [flurryTypeConverter FREGetObject:argv[0] asString:&userGender ] == FRE_OK )
-    {
-        [Flurry setGender:userGender];
-    }
-    return NULL;
-}
-
-DEFINE_ANE_FUNCTION( flurry_setLocation )
-{
-    // latitude : Number, longitude : Number, horizontalAccuracy : Number, verticalAccuracy : Number
-    double latitude;
-    double longitude;
-    double horizontalAccuracy;
-    double verticalAccuracy;
-    
-    if( FREGetObjectAsDouble( argv[0], &latitude ) != FRE_OK ) return NULL;
-    if( FREGetObjectAsDouble( argv[0], &longitude ) != FRE_OK ) return NULL;
-    if( FREGetObjectAsDouble( argv[0], &horizontalAccuracy ) != FRE_OK ) return NULL;
-    if( FREGetObjectAsDouble( argv[0], &verticalAccuracy ) != FRE_OK ) return NULL;
-        
-    [Flurry setLatitude:latitude longitude:longitude horizontalAccuracy:horizontalAccuracy verticalAccuracy:verticalAccuracy];
-    return NULL;
-}
-
 DEFINE_ANE_FUNCTION( flurry_setEventLoggingEnabled )
 {
     uint32_t value = 0;
@@ -303,10 +256,6 @@ void FlurryContextInitializer( void* extData, const uint8_t* ctxType, FREContext
         MAP_FUNCTION( flurry_logError, NULL ),
         MAP_FUNCTION( flurry_startTimedEvent, NULL ),
         MAP_FUNCTION( flurry_endTimedEvent, NULL ),
-        MAP_FUNCTION( flurry_setUserId, NULL ),
-        MAP_FUNCTION( flurry_setUserAge, NULL ),
-        MAP_FUNCTION( flurry_setUserGender, NULL ),
-        MAP_FUNCTION( flurry_setLocation, NULL ),
         MAP_FUNCTION( flurry_setEventLoggingEnabled, NULL )
     };
     
