@@ -186,45 +186,6 @@ package com.sticksports.nativeExtensions.flurry
 		}
 		
 		/**
-		 * Set user's id in your system.
-		 */
-		public static function setUserId( id : String ) : void
-		{
-			initExtension();
-			extensionContext.call( NativeMethods.setUserId, id );
-		}
-		
-		/**
-		 * Set user's age in years
-		 */
-		public static function setUserAge( age : int ) : void
-		{
-			initExtension();
-			extensionContext.call( NativeMethods.setUserAge, age );
-		}
-		
-		/**
-		 * Set user's gender ("m" or "f")
-		 */
-		public static function setUserGender( gender : String ) : void
-		{
-			if( gender == GENDER_MALE || gender == GENDER_FEMALE )
-			{
-				initExtension();
-				extensionContext.call( NativeMethods.setUserGender, gender );
-			}
-		}
-		
-		/**
-		 * Set location information - iOS only
-		 */
-		public static function setLocation( latitude : Number, longitude : Number, horizontalAccuracy : Number, verticalAccuracy : Number ) : void
-		{
-			initExtension();
-			extensionContext.call( NativeMethods.setLocation, latitude, longitude, horizontalAccuracy, verticalAccuracy );
-		}
-		
-		/**
 		 * Enable logging. Default is true.
 		 */
 		public static function get eventLoggingEnabled() : Boolean
