@@ -4,7 +4,7 @@
 	<property file="build.config"/>
 	<property name="FLEX_HOME" location="${sdk.home}" />
 	<taskdef resource="flexTasks.tasks" classpath="${FLEX_HOME}/ant/lib/flexTasks.jar" />
-	<property name="flurry.analytics.android.version" value="4.4.0"/>
+	<property name="flurry.analytics.android.version" value="4.2.0"/>
 		
 	<target name="all" depends="ios,android,swc,default,package" description="Full build of extension"/>
 	
