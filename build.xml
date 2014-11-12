@@ -89,7 +89,10 @@
 	</target>
 	
 	<target name="package" description="Create the extension package">
-		<exec executable="${air.sdk.home}/bin/adt${bin.ext}" failonerror="true" dir="${project.buid.dir}">
+		<java jar="${adt.jar}" fork="true" failonerror="true">
+			<jvmarg value="-Xmx512m" />
+			<jvmarg value="-Dsun.io.useCanonCaches=false" />
+
 			<arg value="-package"/>
 
 			<arg value="-target"/>
@@ -105,26 +108,26 @@
 			<arg value="-platformoptions"/>
 			<arg value="${project.dir}/platform.xml"/>
 			<arg value="-C"/>
-			<arg value="ios/"/>
+			<arg value="${project.buid.dir}/ios/"/>
 			<arg value="."/>
 
 			<arg value="-platform"/>
 			<arg value="Android-ARM"/>
 			<arg value="-C"/>
-			<arg value="android/"/>
+			<arg value="${project.buid.dir}/android/"/>
 			<arg value="."/>
 
 			<arg value="-platform"/>
 			<arg value="Android-x86"/>
 			<arg value="-C"/>
-			<arg value="android/"/>
+			<arg value="${project.buid.dir}/android/"/>
 			<arg value="."/>
 
 			<arg value="-platform"/>
 			<arg value="default"/>
 			<arg value="-C"/>
-			<arg value="default/"/>
+			<arg value="${project.buid.dir}/default/"/>
 			<arg value="."/>
-		</exec>
+		</java>
 	</target>
 </project>
