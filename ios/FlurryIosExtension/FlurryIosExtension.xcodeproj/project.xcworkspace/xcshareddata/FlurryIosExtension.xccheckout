@@ -21,7 +21,7 @@
 		<string>../../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>ssh://github.com/kdebisschop/ANE-Flurry-Analytics.git</string>
+	<string>ssh://github.com/StickSports/ANE-Flurry-Analytics.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>

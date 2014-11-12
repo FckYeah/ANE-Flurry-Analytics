@@ -13,7 +13,7 @@ package com.sticksports.nativeExtensions.flurry
 		{
 			if ( !extensionContext )
 			{
-				extensionContext = ExtensionContext.createExtensionContext( "com.sticksports.nativeExtensions.flurry", null );
+				extensionContext = ExtensionContext.createExtensionContext( "com.sticksports.nativeExtensions.Flurry", null );
 			}
 		}
 		
@@ -183,15 +183,6 @@ package com.sticksports.nativeExtensions.flurry
 				initExtension();
 				extensionContext.call( NativeMethods.endTimedEvent, eventName );
 			}
-		}
-		
-		/**
-		 * Set location information - iOS only
-		 */
-		public static function setLocation( latitude : Number, longitude : Number, horizontalAccuracy : Number, verticalAccuracy : Number ) : void
-		{
-			initExtension();
-			extensionContext.call( NativeMethods.setLocation, latitude, longitude, horizontalAccuracy, verticalAccuracy );
 		}
 		
 		/**

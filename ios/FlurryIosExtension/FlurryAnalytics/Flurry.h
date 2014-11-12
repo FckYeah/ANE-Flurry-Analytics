@@ -154,6 +154,19 @@ typedef enum {
  */
 + (void)setSecureTransportEnabled:(BOOL)value;
 
+/*!
+ *  @brief Enable automatic collection of crash reports.
+ *  @since 4.1
+ *
+ *  This is an optional method that collects crash reports when enabled. The
+ *  default value is @c NO.
+ *
+ *  @note This method must be called prior to invoking #startSession:.
+ *
+ *  @param value @c YES to enable collection of crash reports.
+ */
++ (void)setCrashReportingEnabled:(BOOL)value;
+
 //@}
 
 /*!
@@ -166,6 +179,9 @@ typedef enum {
  *  time specified in #setSessionContinueSeconds:. If the app is resumed in that period
  *  the session will continue, otherwise a new session will begin.
  *
+ *  Crash reporting will not be enabled. See #setCrashReportingEnabled: for
+ *  more information.
+ * 
  *  @note If testing on a simulator, please be sure to send App to background via home
  *  button. Flurry depends on the iOS lifecycle to be complete for full reporting.
  * 

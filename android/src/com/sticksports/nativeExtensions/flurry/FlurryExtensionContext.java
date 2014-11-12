@@ -27,7 +27,7 @@ public class FlurryExtensionContext extends FREContext
 		functionMap.put( "flurry_logError", new FlurryLogError() );
 		functionMap.put( "flurry_startTimedEvent", new FlurryStartTimedEvent() );
 		functionMap.put( "flurry_endTimedEvent", new FlurryEndTimedEvent() );
-		functionMap.put( "flurry_setLocation", new FlurrySetLocation() );
+		functionMap.put( "flurry_setEventLoggingEnabled", new FlurrySetEventLoggingEnabled() );
 		return functionMap;
 	}
 
