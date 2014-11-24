@@ -1,1 +1,15 @@
 text eol=lf
+
+*.as text
+*.config text
+*.description text
+*.h text
+*.java text
+*.m text
+*.txt text
+*.xml text
+
+*.q binary
+*.class binary
+*.jar binary
+*.phg binary
