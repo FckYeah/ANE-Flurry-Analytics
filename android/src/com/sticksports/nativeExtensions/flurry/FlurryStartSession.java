@@ -16,7 +16,7 @@ public class FlurryStartSession implements FREFunction
 		try
 		{
 			String id = args[0].getAsString();
-			FlurryAgent.onStartSession( context.getActivity(), id );
+			FlurryAgent.init( context.getActivity(), id );
 		}
 		catch ( Exception exception )
 		{

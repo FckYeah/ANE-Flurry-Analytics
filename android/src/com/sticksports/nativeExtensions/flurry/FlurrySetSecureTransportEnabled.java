@@ -13,6 +13,8 @@ public class FlurrySetSecureTransportEnabled implements FREFunction
 	@Override
 	public FREObject call( FREContext context, FREObject[] args )
 	{
+		// The 5.x SDKs have made this call obsolete: Google Play has made HTTPS mandatory
+/*
 		try
 		{
 			boolean secure = args[0].getAsBool();
@@ -22,6 +24,9 @@ public class FlurrySetSecureTransportEnabled implements FREFunction
 		{
 			Log.w( "Flurry", exception );
 		}
+*/
+		// TODO : eliminate this class entirely?
+
 		return null;
 	}
 }
