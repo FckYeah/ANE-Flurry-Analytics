@@ -102,8 +102,6 @@ package com.sticksports.nativeExtensions.flurry
 		 */
 		public static function endSession() : void
 		{
-			initExtension();
-			extensionContext.call( NativeMethods.endSession );
 			_sessionStarted = false;
 		}
 		
